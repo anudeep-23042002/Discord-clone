@@ -5,8 +5,8 @@
   "scripts": {
     "dev": "next dev",
     "build": "CI=false next build",
-    "start": "next start",
-    "lint": "next lint"
+    "start": "CI=false next start",
+    "lint": "CI=false next lint"
   },
   "dependencies": {
     "@clerk/nextjs": "^5.3.0",
