@@ -47,10 +47,10 @@ const ServerSearch = ({data}:ServersearchProps) => {
                         if(!data?.length) return null;
                         return (
                             <CommandGroup key={label} heading={label}>
-                                {data?.map(({id,icon,name})=>{
+                                {data?.map(({id,Icon,name})=>{
                                     return (
                                         <CommandItem onSelect={()=>onClick({id,type})} key={id}>
-                                            {icon}
+                                            {Icon}
                                             <span>{name}</span>
                                         </CommandItem>
                                     )
