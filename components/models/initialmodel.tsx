@@ -69,7 +69,7 @@ const InitialModel = () => {
                             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
                                 <FormField 
                                 control={form.control}
-                                name="imageUrl"
+                                name="imageUrL"
                                 render={({field})=>(
                                     <FormItem>
                                         <FormControl>
