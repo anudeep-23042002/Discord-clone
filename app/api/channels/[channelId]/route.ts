@@ -14,6 +14,9 @@ export async function PATCH(req:Request,
             return new NextResponse("unauthorized",{status:401});
         }
         if(!params.channelId){
+            return new NextResponse("channelID missing",{status:400});
+        }
+        if(!serverId){
             return new NextResponse("ServerID missing",{status:400});
         }
         const server=await db.server.update({
