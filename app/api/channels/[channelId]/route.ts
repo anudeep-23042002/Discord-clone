@@ -64,6 +64,9 @@ export async function DELETE(req:Request,
             if(!params.channelId){
                 return new NextResponse("ServerID missing",{status:400});
             }
+            if(!serverId){
+                return new NextResponse("ServerID missing",{status:400});
+            }
             const server=await db.server.update({
                 where:{
                     id:serverId 

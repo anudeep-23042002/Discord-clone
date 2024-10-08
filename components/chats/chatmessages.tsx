@@ -55,7 +55,7 @@ const ChatMessages = ({
         count:data?.pages?.[0]?.items?.length ?? 0,
     })
     console.log("STATUS",status);
-    if(status=== 'pending'){
+    if(status === 'pending'){
         return (
             <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-800 bg-opacity-50">
                 <div className="flex flex-col items-center">

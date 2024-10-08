@@ -166,7 +166,7 @@ const ChatItem = ({id,content,member,timestamp,fileUrl,deleted,
                                                     </FormItem>
                                                 )}
                                             />   
-                                            <Button className="sm bg-zinc-100 dark:bg-zinc-800" variant="primary" disabled={isLoading}>
+                                            <Button className="sm bg-zinc-100 dark:bg-zinc-800" variant="secondary" disabled={isLoading}>
                                                 Save
                                             </Button>
                                         </form>
