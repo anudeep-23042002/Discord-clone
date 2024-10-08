@@ -70,7 +70,7 @@ const Serversidebar = async({serverId}:serversidebarprops) => {
                         data:textchannels?.map((channel)=>({
                             id:channel.id,
                             name:channel.name,
-                            icon:IconMap[channel.type],
+                            Icon:IconMap[channel.type],
                         }))
                        },
                        {
@@ -79,7 +79,7 @@ const Serversidebar = async({serverId}:serversidebarprops) => {
                         data:audiochannels?.map((channel)=>({
                             id:channel.id,
                             name:channel.name,
-                            icon:IconMap[channel.type],
+                            Icon:IconMap[channel.type],
                         }))
                        },
                        {
@@ -88,7 +88,7 @@ const Serversidebar = async({serverId}:serversidebarprops) => {
                         data:videochannels?.map((channel)=>({
                             id:channel.id,
                             name:channel.name,
-                            icon:IconMap[channel.type],
+                            Icon:IconMap[channel.type],
                         }))
                        },
                        {
@@ -97,7 +97,7 @@ const Serversidebar = async({serverId}:serversidebarprops) => {
                         data:members?.map((member)=>({
                             id:member.id,
                             name:member.profile.name,
-                            icon:roleIconMap[member.role],
+                            Icon:roleIconMap[member.role],
                         }))
                        }
                     ]}/>
