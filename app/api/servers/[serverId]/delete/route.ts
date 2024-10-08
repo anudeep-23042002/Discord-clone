@@ -17,7 +17,7 @@ export async function DELETE(
         }
         const server=await db.server.deleteMany({
             where:{
-                id:params.serverId,
+                id:params.serverId as string,
                 members:{
                     some:{
                         profileId:profile.id,
