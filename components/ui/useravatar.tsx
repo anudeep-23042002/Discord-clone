@@ -3,8 +3,8 @@ import { cn } from "@/lib/utils";
 import { Avatar, AvatarImage } from "./avatar";
 
 interface UserAvatorProps{
-    src?:String;
-    className?:String;
+    src?:string;
+    className?:string;
 }
 const UserAvator = ({src,className}:UserAvatorProps) => {
     return ( 
