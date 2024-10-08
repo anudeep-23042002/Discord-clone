@@ -16,7 +16,7 @@ export async function DELETE(
         }
         const server=await db.server.update({
             where:{
-                id:params.serverId,
+                id:params.serverId as string,
                 members:{
                     some:{
                         profileId:profile.id,
