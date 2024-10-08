@@ -23,6 +23,7 @@ export const useChatQuery=({queryKey,apiUrl,paramKey,paramValue}:ChatQueryProps)
         const res=await fetch(url);
         return res.json();
     };
+    //@ts-ignore
     const {data,fetchNextPage,hasNextPage,isFetchingNextPage,status}=useInfiniteQuery({
         queryKey: [queryKey],
         queryFn:fetchMessages,

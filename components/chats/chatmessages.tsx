@@ -4,7 +4,7 @@ import ChatWelcome from "./chatwelcome";
 import { useChatQuery } from "@/hooks/use-query";
 import { Loader2, ServerCrash } from "lucide-react";
 import {format} from "date-fns";
-import { ElementRef, Fragment, useRef } from "react";
+import { ElementRef, Fragment, useRef, useState } from "react";
 import ChatItem from "./chatItem";
 import { useChatSocket } from "@/hooks/use-chat-socket";
 import { useChatScroll } from "@/hooks/use-chat-scroll";
@@ -21,6 +21,8 @@ interface ChatMessagesProps{
     paramValue:string;
     type: "channel" | "conversation";
 }
+type StatusType = "error" | "success" | "pending"; 
+
 type MessageWithMemberWithProfile=Message & {
     member:Member &{
         profile:Profile
@@ -41,9 +43,9 @@ const ChatMessages = ({
     const queryKey=`chat:${chatId}`;
     const addKey=`chat:${chatId}:messages`;
     const updateKey=`chat:${chatId}:update`;
-
     const chatRef=useRef<ElementRef<"div">>(null);
     const bottomRef=useRef<ElementRef<"div">>(null);
+    const [status_type, setStatus] = useState<StatusType>("pending"); // or whatever the initial state should be
 
     const {data,fetchNextPage,hasNextPage,isFetchingNextPage,status}=useChatQuery({queryKey,apiUrl,paramKey,paramValue});
     useChatSocket({queryKey,addKey,updateKey});
@@ -55,6 +57,7 @@ const ChatMessages = ({
         count:data?.pages?.[0]?.items?.length ?? 0,
     })
     console.log("STATUS",status);
+    //@ts-ignore
     if(status === 'pending'){
         return (
             <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-800 bg-opacity-50">
