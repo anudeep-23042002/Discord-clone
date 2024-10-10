@@ -2,7 +2,6 @@
 import {
     Dialog,
     DialogContent,
-    DialogDescription,
     DialogHeader,
     DialogTitle,
     DialogTrigger,
@@ -23,7 +22,6 @@ const ChannelDeleteModel = () => {
     const {channel}=data as {channel:Channel};
     const onSubmit=async()=>{
         try{
-            //TODO channels value is not updating to audio and video
             const url=qs.stringifyUrl({
                 url:`/api/channels/${channel?.id}`,
                 query:{

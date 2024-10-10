@@ -36,7 +36,7 @@ const roleIconMap={
 }
 const ManageMemberModel = () => {
     const {onOpen,isOpen,onClose, type, data}=useModel();
-    const [LoadingId,setLoadingId]=useState("");
+    const [LoadingId,setLoadingId]=useState<string>();
     const ismodelopen=isOpen  && type=="manageMembers";
     const router=useRouter();
     const handleClose=()=>{
@@ -63,7 +63,6 @@ const ManageMemberModel = () => {
         }
     };
     const onRoleChange=async(memberId:string,role:MemberRole)=>{
-        //TODO:adjust loading button while chane=ging role.
         try{
             setLoadingId(memberId);
             const url=qs.stringifyUrl({
@@ -148,10 +147,10 @@ const ManageMemberModel = () => {
                                                     </DropdownMenuItem>
                                                 </DropdownMenuContent>
                                             </DropdownMenu>
-                                            {LoadingId===member.id && (
-                                                <Loader2 className="animate-spin ml-auto h-4 w-4"/>
-                                            )}
                                         </div>
+                                    )}
+                                    {LoadingId===member.id && (
+                                                <Loader2 className="animate-spin ml-auto h-4 w-4"/>
                                     )}
                                 </div>
                             ))}

@@ -12,7 +12,7 @@ const FileUpload = ({onchange,endpoint,value}:FileUploadprops) => {
     const fileType=value?.split(".").pop();
     if(value && fileType!="pdf"){
         return (
-            <div className="relative h-20 w-20">
+            <div className="relative ml-5 h-20 w-20">
                 <Image
                 fill
                 src={value}

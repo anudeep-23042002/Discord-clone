@@ -27,6 +27,7 @@ import axios from "axios";
 import { useModel } from "@/hooks/use-modal-store";
 import { useEffect } from "react";
 import { ServerWithMemberswithProfiles } from "@/types";
+import { Loader2 } from "lucide-react";
   const formschema=z.object({
     name:z.string().min(1,{
         message:"Server name is required"
@@ -37,27 +38,27 @@ import { ServerWithMemberswithProfiles } from "@/types";
 })
 const EditServerModel = () => {
     const {isOpen,onClose, type, data}=useModel();
+    const {server}=data as {server:ServerWithMemberswithProfiles};
     const form = useForm({
         resolver:zodResolver(formschema),
         defaultValues:{
-            name:"",
-            imageUrl:""
+            name:server?.name || "",
+            imageUrl:server?.imageUrl || "",
         }
     });
-    const {server}=data as {server:ServerWithMemberswithProfiles};
     useEffect(()=>{
         if(server){
             form.setValue("name",server?.name);
             form.setValue("imageUrl",server?.imageUrl);
         }
-    })
+    },[form,server]);
+    
     const ismodelopen=isOpen  && type=="editServer"
     const isLoadingState=form.formState.isSubmitting;
     const router=useRouter();
 
     const onSubmit=async(values: z.infer<typeof formschema>)=>{
         try{
-            //TODO check for image upload/edit image
             await axios.patch(`/api/servers/${server?.id}`,values);
             form.reset();
             router.refresh();
@@ -72,6 +73,11 @@ const EditServerModel = () => {
     }
     return ( 
         <>
+            {isLoadingState && (
+                <div>
+                    <Loader2 className="animate-spin w-4 h-4"/>
+                </div>
+            )}
             <Dialog open={ismodelopen} onOpenChange={handleClose}>
                 <DialogTrigger></DialogTrigger>
                     <DialogContent>

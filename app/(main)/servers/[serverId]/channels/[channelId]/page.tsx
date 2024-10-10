@@ -34,9 +34,9 @@ const ChannelIDPage = async({params}:ChannelIDPageprops) => {
         redirect("/");
     }
     return (  
-        <div className="flex flex-col h-full pl-[150px] w-full bg-white dark:bg-[#313338]">
+        <div className="flex flex-col h-full md:pl-[150px] w-full bg-white dark:bg-[#313338]">
             {/* TODO */}
-            {/* <MobileToggle serverId={params.serverId}/> */}
+            
             <Chatheader type="channel" serverId={params.serverId} name={channel?.name}/>
             {channel.type===ChannelType.TEXT && (
                 <div className="flex-1 overflow-y-auto">
@@ -57,19 +57,23 @@ const ChannelIDPage = async({params}:ChannelIDPageprops) => {
                 </div>
             )}
             {channel.type===ChannelType.AUDIO && (
-                <MediaRoom
-                    ChatId={channel.id}
-                    Audio={true}
-                    Video={false}
-                />
+                <div className="flex-1 overflow-y-auto">
+                    <MediaRoom
+                        ChatId={channel.id}
+                        Audio={true}
+                        Video={false}
+                    />
+                </div>
             )}
             
             {channel.type===ChannelType.VIDEO && (
-                <MediaRoom
-                    ChatId={channel.id}
-                    Audio={true}
-                    Video={true}
-                />
+                <div className="flex-1 overflow-y-auto">
+                    <MediaRoom
+                        ChatId={channel.id}
+                        Audio={true}
+                        Video={true}
+                    />
+                </div>
             )}
             {channel.type===ChannelType.TEXT &&(<ChatInput  
             name={channel.name}

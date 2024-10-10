@@ -75,7 +75,6 @@ const ChatMessages = ({
             </div>
         )
     }
-    console.log("GROUP",data.pages[0].items);
     return ( 
         <div ref={chatRef} className="flex-1 flex flex-col py-4 overflow-y-auto">
             {!hasNextPage && (<div className="flex-1"/>)}
