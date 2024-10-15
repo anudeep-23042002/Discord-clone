@@ -39,7 +39,7 @@ const ChannelIDPage = async({params}:ChannelIDPageprops) => {
             
             <Chatheader type="channel" serverId={params.serverId} name={channel?.name}/>
             {channel.type===ChannelType.TEXT && (
-                <div className="flex-1 overflow-y-auto">
+                <div className="flex-1 flex flex-col-reverse overflow-y-auto">
                     <ChatMessages 
                         name={channel.name}
                         member={member}

@@ -76,48 +76,48 @@ const ChatMessages = ({
         )
     }
     return ( 
-        <div ref={chatRef} className="flex-1 flex flex-col py-4 overflow-y-auto">
+        <div ref={chatRef} className="flex-1 flex flex-col py-4 overflow-y-auto jud">
             {!hasNextPage && (<div className="flex-1"/>)}
-                {!hasNextPage && (
-                    <ChatWelcome name={name} type={type}/>
-                    )}
-                {hasNextPage && (
-                    <div className="flex justify-center">
-                        {isFetchingNextPage ? (
-                            <div>
-                                <Loader2 className="h-4 w-4 text-zinc-500 animate-spin my-4"/>
-                            </div>
-                        ):(<button 
-                            className="text-zinc-500 hover:text-zinc-600 dark:text-zinc-400 
-                            dark:hover:text-zinc-300 text-xs my-4 transition"
-                        onClick={()=>fetchNextPage()}>
-                            Load previous messages
-                        </button>)}
-                    </div>
+            {!hasNextPage && (
+                <ChatWelcome name={name} type={type}/>
                 )}
-                <div className="flex flex-col-reverse mt-auto">
-                    {data?.pages?.map((group,i)=>(
-                        <Fragment key={i}>
-                            {group && group?.items?.map((message:MessageWithMemberWithProfile)=>(
-                                <div key={message.id}>
-                                    <ChatItem
-                                        key={message.id}
-                                        id={message.id}
-                                        currentMember={member}
-                                        member={message.member}
-                                        content={message.content}
-                                        fileUrl={message.fileUrl}
-                                        deleted={message.delete}
-                                        timestamp={format(new Date(message.createdAt),dateFormat)}
-                                         isUpdated={message.createdAt!==message.updtedAt}
-                                        socketUrl={socketUrl}
-                                        socketQuery={socketQuery}
-                                    />
-                                </div>
-                            ))}
-                        </Fragment>
-                    ))}
+            {hasNextPage && (
+                <div className="flex justify-center">
+                    {isFetchingNextPage ? (
+                        <div>
+                            <Loader2 className="h-4 w-4 text-zinc-500 animate-spin my-4"/>
+                        </div>
+                    ):(<button 
+                        className="text-zinc-500 hover:text-zinc-600 dark:text-zinc-400 
+                        dark:hover:text-zinc-300 text-xs my-4 transition"
+                    onClick={()=>fetchNextPage()}>
+                        Load previous messages
+                    </button>)}
                 </div>
+            )}
+            <div className="flex flex-col-reverse mt-auto">
+                {data?.pages?.map((group,i)=>(
+                    <Fragment key={i}>
+                        {group && group?.items?.map((message:MessageWithMemberWithProfile)=>(
+                            <div key={message.id}>
+                                <ChatItem
+                                    key={message.id}
+                                    id={message.id}
+                                    currentMember={member}
+                                    member={message.member}
+                                    content={message.content}
+                                    fileUrl={message.fileUrl}
+                                    deleted={message.delete}
+                                    timestamp={format(new Date(message.createdAt),dateFormat)}
+                                        isUpdated={message.createdAt!==message.updtedAt}
+                                    socketUrl={socketUrl}
+                                    socketQuery={socketQuery}
+                                />
+                            </div>
+                        ))}
+                    </Fragment>
+                ))}
+            </div>
             <div ref={bottomRef}/>
         </div>
      );

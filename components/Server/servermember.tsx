@@ -19,6 +19,7 @@ const roleIconMap={
 const ServerMember = ({name,id,role}:Servermemberprops) => {
     const router=useRouter();
     const params=useParams();
+    const displayname=name.split("@")[0];
     const onClick=()=>{
         router.push(`/servers/${params?.serverId}/conversations/${id}`);
     }
@@ -31,7 +32,7 @@ const ServerMember = ({name,id,role}:Servermemberprops) => {
                 {icon}
                 <p className={cn("line-clamp-1 font-semibold text-sm text-zinc-500 group-hover:text-zinc-600 dark:text-zinc-400 dark:group-hover:text-zinc-300 transition",
                 params?.memberId===id && "text-primary dark:text-zinc-200 dark:group-hover:text-white"
-                )}>{name}</p>
+                )}>{displayname}</p>
             
         </button>
      );

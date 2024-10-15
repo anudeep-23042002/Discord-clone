@@ -6,7 +6,7 @@ const Socketindicator = () => {
   const {socket,isConnected} = useSocket();
   if (!isConnected) {
     return (
-      <div>
+      <div >
         <Badge>
           Fallback: Every polling 1s
         </Badge>

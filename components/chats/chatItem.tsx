@@ -13,8 +13,9 @@ import { Form, FormControl, FormField, FormItem } from "../ui/form";
 import { Input } from "../ui/input";
 import { Button } from "../ui/button";
 import { useModel } from "@/hooks/use-modal-store";
-import { Separator } from "../ui/separator";
 import { cn } from "@/lib/utils";
+import { useRouter } from "next/navigation";
+import { useParams } from "next/navigation";
 const formschema=z.object({
     content:z.string().min(1,{
         message:"Content is required"
@@ -43,12 +44,18 @@ const ChatItem = ({id,content,member,timestamp,fileUrl,deleted,
     currentMember,isUpdated,socketUrl,socketQuery
 }:ChatItemProps) => {
     const {onOpen}=useModel();
+    const router=useRouter();
+    const params=useParams();
     const form = useForm({
         resolver:zodResolver(formschema),
         defaultValues:{
             content:"",
         }
     });
+    const handleOnClickUser=(memberId:string)=>{
+        console.log("HEYY");
+        router.push(`/servers/${params?.serverId}/conversations/${memberId}`);
+    }
     const OnSubmit=async(values: z.infer<typeof formschema>)=>{
         try{
             const url=qs.stringifyUrl({
@@ -98,7 +105,9 @@ const ChatItem = ({id,content,member,timestamp,fileUrl,deleted,
                     <div className="flex flex-col w-full">
                         <div className="flex items-center gap-x-2">
                             <div className="flex items-center">
-                                <p className="font-semibold text-sm hover:underline cursor-pointer">{member.profile.name}</p>
+                                <p className="font-semibold text-sm hover:underline cursor-pointer" onClick={()=>handleOnClickUser(member.id)}>
+                                    {member.profile.email.split("@")[0]}
+                                </p>
                                 {roleIconMap[member.role]}
                             </div>
                             <span className="text-xs text-zinc-500 dark-text-zinc-400">{timestamp}</span>

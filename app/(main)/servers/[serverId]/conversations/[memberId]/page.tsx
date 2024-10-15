@@ -41,9 +41,8 @@ const MemberIDPage = async({params,searchParams}:MemberIDPageprops) => {
     const {memberOne,memberTwo}= conversation;
     const otherMember=memberOne.profile.id==profile.id?memberTwo:memberOne;
     return ( 
-        <div className="flex flex-col h-full pl-[150px] w-full bg-white dark:bg-[#313338]">
-            <Chatheader type="member" serverId={params.serverId} name={otherMember.profile.name}/>
-            <div>
+        <div className="flex flex-col h-full md:pl-[150px] w-full bg-white dark:bg-[#313338]">
+            <Chatheader type="member" serverId={params.serverId} name={otherMember.profile.email}/>
                 {searchParams?.video && (
                     <MediaRoom 
                     ChatId={conversation.id}
@@ -53,9 +52,9 @@ const MemberIDPage = async({params,searchParams}:MemberIDPageprops) => {
                     </MediaRoom>
                 )}
                 {!searchParams?.video && (
-                    <div>
+                    <div className="flex-1 flex flex-col-reverse overflow-y-auto">
                         <ChatMessages
-                            name={otherMember.profile.name}
+                            name={otherMember.profile.email.split("@")[0]}
                             member={currentMember}
                             chatId={conversation.id}
                             type="conversation"
@@ -67,6 +66,9 @@ const MemberIDPage = async({params,searchParams}:MemberIDPageprops) => {
                                 conversationId:conversation.id
                             }}
                             />
+                    </div>
+                )}
+                {!searchParams?.video && (
                             <ChatInput
                             apiUrl="/api/socket/direct-messages/"
                             name={otherMember.profile.name}
@@ -75,9 +77,7 @@ const MemberIDPage = async({params,searchParams}:MemberIDPageprops) => {
                                 conversationId:conversation.id
                             }}
                             />
-                    </div>
                 )}
-            </div>
         </div>
      );
 }

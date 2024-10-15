@@ -15,13 +15,7 @@ const MediaRoom = ({ChatId,Video,Audio}:MediaRoomProps) => {
     const [token,settoken]=useState("");
 
     useEffect(()=>{
-        let name="";
-        if(!user?.firstName || !user?.lastName){
-            name="user";
-        }
-        else{
-            name=`${user.firstName} ${user.lastName}`;
-        }
+        let name=user.primaryEmailAddress.emailAddress;
         (async ()=>{
             try{
                 const resp=await fetch(`/api/livekit?room=${ChatId}&username=${name}`);

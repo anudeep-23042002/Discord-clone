@@ -165,7 +165,7 @@ const Serversidebar = async({serverId}:serversidebarprops) => {
                                 server={server}
                             />
                             {members.map((member) => (
-                                <ServerMember key={member.id} name={member.profile.name} id={member.id} 
+                                <ServerMember key={member.id} name={member.profile.email} id={member.id} 
                                 role={member.role}/>
                             ))}
                         </div>

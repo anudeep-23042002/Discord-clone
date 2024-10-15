@@ -1,35 +1,34 @@
 import {
     Sheet,
     SheetContent,
-    SheetDescription,
-    SheetHeader,
-    SheetTitle,
     SheetTrigger,
-  } from "@/components/ui/sheet"
+} from "@/components/ui/sheet";
 import { Button } from "./ui/button";
 import { Menu } from "lucide-react";
 import Serversidebar from "./Server/serversidebar";
 import NavigationSideBar from "./Navigation/navigationsidebar";
-  
-const MobileToggle = ({serverId}:{serverId:string}) => {
-    //TODO SHOW TOGGLE BUTTON ONLY IN MOBILE VIEW   
-    return ( 
+
+const MobileToggle = ({ serverId }: { serverId: string }) => {
+    return (
         <Sheet>
             <SheetTrigger asChild>
                 <Button variant="ghost" size="icon" className="block md:!hidden">
-                    <Menu/>
+                    <Menu />
                 </Button>
             </SheetTrigger>
-            
-            <SheetContent side="left" className="flex gap-0">
-                <div className="w-[72px]">
-                    <NavigationSideBar/>
-                </div>
-                <Serversidebar serverId={serverId}/>
-            </SheetContent>
-            </Sheet>
 
-     );
+            <SheetContent side="left" className="p-0"> 
+                <div className="flex h-full">
+                    <div className="w-[72px] h-full">
+                        <NavigationSideBar />
+                    </div>
+                    <div className="flex-1 h-full bg-slate-200 dark:bg-slate-800">
+                        <Serversidebar serverId={serverId} />
+                    </div>
+                </div>
+            </SheetContent>
+        </Sheet>
+    );
 }
- 
+
 export default MobileToggle;

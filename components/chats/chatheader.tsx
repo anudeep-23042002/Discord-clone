@@ -12,20 +12,24 @@ interface ChatheaderProps{
     name:string
 }
 const Chatheader = ({type,serverId,name}:ChatheaderProps) => {
+    let displayname=name;
+    if(type=="member"){
+        displayname=name.split("@")[0];
+    }
     return (
         <div className="text-md font-semibold px-1 flex items-center h-12 border-neutral-200 
         dark:border-neutral-800 border-b-2">
                 <MobileToggle serverId={serverId}/>
                 <Hash className="ml-2 mt-1 text-zinc-500 dark:text-zinc-400"/>
-                <p className="ml-2 mt-1 font-semibold">{name}</p>
-                <div className="flex ml-auto">
-                    <Socketindicator />
-                </div>
+                <p className="flex-1 ml-2 mt-1 whitespace-nowrap overflow-hidden text-ellipsis font-semibold">{displayname}</p>
                 {type==="member" &&(
-                    <div className="ml-2 mt-2">
+                    <div className="ml-auto mt-2 pr-2">
                         <VideoButton/>
                     </div>
                 )}
+                <div className="ml-auto">
+                    <Socketindicator />
+                </div>
         </div>
     )
 }

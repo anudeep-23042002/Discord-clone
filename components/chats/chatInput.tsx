@@ -64,7 +64,7 @@ const ChatInput = ({apiUrl,query,name,type,fileUrl}:ChatInputProps) => {
                                     <Input placeholder="Enter message" disabled={isLoading} {...field}
                                     className="px-14 py-6 bg-zinc-200/90 dark:bg-zinc-700/75 border-none border-0
                                     focus-visible:ring-0 focus-visible:ring-offset-0 text-zinc-600 dark:text-zinc-200"/>
-                                    <div className="flex flex-row absolute right-28 gap-x-2 top-7">
+                                    <div className="flex flex-row absolute right-11 md:absolute md:right-28 gap-x-2 top-7">
                                         <EmojiPicker
                                         onChange={(emoji:string)=>field.onChange(`${field.value} ${emoji}`)}/>
                                         <FileUpIcon onClick={()=>{onOpen("uploadFile",{apiUrl,query})}}/>

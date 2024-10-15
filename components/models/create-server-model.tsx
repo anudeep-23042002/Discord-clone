@@ -29,7 +29,7 @@ import { useModel } from "@/hooks/use-modal-store";
     name:z.string().min(1,{
         message:"Server name is required"
     }),
-    imageUrl:z.string().min(1,{
+    imageUrL:z.string().min(1,{
         message:"ImageUrl name is required"
     })
 })
@@ -51,6 +51,7 @@ const CreateServerModel = () => {
             await axios.post("/servers",values);
             form.reset();
             router.refresh();
+            onClose();
             redirect('/');
         }catch(error){
             console.log(error);
